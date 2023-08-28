@@ -34,7 +34,7 @@
           <tr>
             <th scope="col">Sno.</th>
             <th scope="col">Name</th>
-            <th scope="col">Description</th>
+            <!-- <th scope="col">Description</th> -->
             <th scope="col">Photo</th>
             <th scope="col">Action</th>
           </tr>
@@ -43,8 +43,8 @@
           @foreach($products as $product)
           <tr>
             <td>{{ $loop->index+1 }}</td>
-            <td>{{ $product->name }}</td>
-            <td>{{ $product->description }}</td>
+            <td><a href="products/{{ $product->id }}/show" class="text-dark">{{ $product->name }}</a></td>
+            <!-- <td>{{ $product->description }}</td> -->
             <td><img src="products/{{ $product->image }}" class="rounded-circle" width='50' height='50' alt=""></td>
             <td>
               <a href="products/{{ $product->id }}/edit" class="btn btn-dark btn-sm">Edit</a>
