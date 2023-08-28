@@ -32,31 +32,26 @@
       <table class="table table-bordered text-center mt-3">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Sno.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
+          @foreach($products as $product)
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td>{{ $loop->index+1 }}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->description }}</td>
+            <td><img src="products/{{ $product->image }}" class="rounded-circle" width='50' height='50' alt=""></td>
+            <td>
+              <a href="products/{{ $product->id }}/edit" class="btn btn-dark btn-sm">Edit</a>
+              <a href="products/{{ $product->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
