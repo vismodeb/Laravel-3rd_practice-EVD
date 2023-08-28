@@ -15,33 +15,58 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="/">products</a>
+          <a class="nav-link active" href="/">Products</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-  <div class="container mt-3">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="text-center">Stacked form</h2>
-        <form action="/action_page.php">
-          <div class="mb-3 mt-3">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+@if($Message = Session::get('success'))
+  <div class="alert alert-success alert-block">
+    <strong>{{ $Message }}</strong>
+  </div>
+@endif
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center">Product</h2>
+
+            <form method="POST" action="/products/store" enctype="multipart/form-data">
+              @csrf
+
+              <div class="mb-3 mt-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ old('name') }}">
+                @if($errors->has('name'))
+                  <span class="text-danger">{{ $errors->First('name') }}</span>
+                @endif
+              </div>
+
+              <div class="mb-3">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="79" placeholder="Message">{{ old('description') }}</textarea>
+                @if($errors->has('description'))
+                  <span class="text-danger">{{ $errors->First('description') }}</span>
+                @endif
+              </div>
+
+              <div class="mb-3">
+                <label for="image">Photo</label>
+                <input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}">
+                @if($errors->has('image'))
+                  <span class="text-danger">{{ $errors->First('image') }}</span>
+                @endif
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
           </div>
-          <div class="mb-3">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-          </div>
-          <div class="form-check mb-3">
-            <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" name="remember"> Remember me
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
